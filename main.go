@@ -19,7 +19,7 @@ func main() {
 		}
 	}
 
-	pipeName := "video_pipe"
+	pipeName := "stream/video_pipe"
 	if _, err := os.Stat(pipeName); os.IsNotExist(err) {
 		cmd := exec.Command("mkfifo", pipeName)
 		err := cmd.Run()
@@ -96,7 +96,7 @@ func main() {
 		}
 
 		buffer := new(bytes.Buffer)
-		if err := jpeg.Encode(buffer, image, &jpeg.Options{Quality: 75}); err != nil {
+		if err := jpeg.Encode(buffer, image, &jpeg.Options{Quality: 100}); err != nil {
 			log.Println("Error when getting jpeg from image.Image", err)
 			continue
 		}
